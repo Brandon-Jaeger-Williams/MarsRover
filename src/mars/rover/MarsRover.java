@@ -84,12 +84,17 @@ public class MarsRover {
             for (String command : roboticRover.getCommands()) {
                 if (command.equals(LEFT) || command.equals(RIGHT)) {
                     roboticRover.setCardinalCompassPoint(determineNewCardinalCompassPoint(roboticRover.getCardinalCompassPoint(), command));
+                } else {
+                    updateCoordinates(roboticRover);
                 }
-                Coordinate newCoordinates = determineNewCoordinates(roboticRover);
-                doesRoboticRoverExceedTheGrid(newCoordinates);
-                roboticRover.setCoordinate(newCoordinates);
             }
         }
+    }
+
+    private void updateCoordinates(RoboticRover roboticRover) throws ValidationException {
+        Coordinate newCoordinates = determineNewCoordinates(roboticRover);
+        doesRoboticRoverExceedTheGrid(newCoordinates);
+        roboticRover.setCoordinate(newCoordinates);
     }
 
     private void doesRoboticRoverExceedTheGrid(Coordinate newCoordinates) throws ValidationException {
