@@ -4,7 +4,6 @@ import custom.exception.ValidationException;
 import mars.rover.entity.Coordinate;
 import mars.rover.entity.RoboticRover;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class MarsRover {
@@ -26,8 +25,6 @@ public class MarsRover {
     private static final String SECOND_CHARACTER_IS_NOT_A_DIGIT_EXCEPTION = "Please make sure the second character in the plateau grid is a digit.";
     private static final String NO_ROBOTIC_ROVERS_EXCEPTION = "Please provide some robotic rovers.";
     private static final String ROBOTIC_ROVER_EXCEEDS_PLATEAU_GRID_EXCEPTION = "Please note that the robotic rover cannot leave the plateau grid.";
-
-    private HashMap<String, String> test = new HashMap<String, String>();
 
     public MarsRover(String plateauGrid, List<RoboticRover> roboticRoverList) throws ValidationException {
         validatePlateauGrid(plateauGrid);
