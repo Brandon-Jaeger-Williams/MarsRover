@@ -90,22 +90,12 @@ public class MarsRover {
 
     private void updateCoordinates(RoboticRover roboticRover) throws ValidationException {
         Coordinate newCoordinates = determineNewCoordinates(roboticRover);
-        doesRoboticRoverExceedTheGrid(newCoordinates);
+        doesRoboticRoverExceedTheCoordinatesOfThePlateauGrid(newCoordinates);
         roboticRover.setCoordinate(newCoordinates);
     }
 
-    private void doesRoboticRoverExceedTheGrid(Coordinate newCoordinates) throws ValidationException {
-        doestRoboticRoverExceedTheXCoordinatePlateauGrid(newCoordinates);
-        doestRoboticRoverExceedTheYCoordinatePlateauGrid(newCoordinates);
-    }
-
-    private void doestRoboticRoverExceedTheYCoordinatePlateauGrid(Coordinate newCoordinates) throws ValidationException {
-        if (newCoordinates.getY() > maxPlateauYCoordinate)
-            throw new ValidationException(ROBOTIC_ROVER_EXCEEDS_PLATEAU_GRID_EXCEPTION);
-    }
-
-    private void doestRoboticRoverExceedTheXCoordinatePlateauGrid(Coordinate newCoordinates) throws ValidationException {
-        if (newCoordinates.getX() > maxPlateauXCoordinate)
+    private void doesRoboticRoverExceedTheCoordinatesOfThePlateauGrid(Coordinate newCoordinates) throws ValidationException {
+        if (newCoordinates.getY() > maxPlateauYCoordinate || newCoordinates.getX() > maxPlateauXCoordinate)
             throw new ValidationException(ROBOTIC_ROVER_EXCEEDS_PLATEAU_GRID_EXCEPTION);
     }
 

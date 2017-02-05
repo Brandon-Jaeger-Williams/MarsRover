@@ -35,13 +35,18 @@ public class MarsRoverTest {
     private static final String PLATEAU_GRID_INPUT_SECOND_CHARACTER_IS_NOT_A_DIGIT = "5 t";
     private static final String VALID_PLATEAU_GRID_INPUT = "5 5";
     private static final String NO_ROBOTIC_ROVERS_EXCEPTION = "Please provide some robotic rovers.";
+    private static final String VALID_ROBOTIC_ROVER_POSITION_ONE = "1 2 N";
+    private static final String VALID_ROBOTIC_ROVER_POSITION_TWO = "3 3 E";
+    private static final String INVALID_ROBOTIC_ROVER_POSITION = "3 20 E";
+    private static final String VALID_ROBOTIC_ROVER_COMMAND_ONE = "LMLMLMLMM";
+    private static final String VALID_ROBOTIC_ROVER_COMMAND_TWO = "MMRMMRMRRM";
 
     @org.junit.Rule
     public ExpectedException expectedException = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
-        roboticRoverOne = new RoboticRover("1 2 N", "LMLMLMLMM");
+        roboticRoverOne = new RoboticRover(VALID_ROBOTIC_ROVER_POSITION_ONE, VALID_ROBOTIC_ROVER_COMMAND_ONE);
         roboticRoverList = new ArrayList<>();
         roboticRoverList.add(roboticRoverOne);
     }
@@ -93,7 +98,7 @@ public class MarsRoverTest {
         expectedException.expect(ValidationException.class);
         expectedException.expectMessage(ROBOTIC_ROVER_EXCEEDS_PLATEAU_GRID_EXCEPTION);
 
-        roboticRoverTwo = new RoboticRover("3 20 E", "MMRMMRMRRM");
+        roboticRoverTwo = new RoboticRover(INVALID_ROBOTIC_ROVER_POSITION, VALID_ROBOTIC_ROVER_COMMAND_TWO);
         roboticRoverList.add(roboticRoverTwo);
         MarsRover marsRover = new MarsRover(VALID_PLATEAU_GRID_INPUT, roboticRoverList);
         marsRover.executeReceivedCommandsForEachRoboticRover();
@@ -112,7 +117,7 @@ public class MarsRoverTest {
 
     @Test
      public void should_return_one_three_N_for_rover_one_given_rover_one_position_is_one_two_N_and_the_given_command_is_LMLMLMLMM() throws ValidationException {
-        roboticRoverTwo = new RoboticRover("3 3 E", "MMRMMRMRRM");
+        roboticRoverTwo = new RoboticRover(VALID_ROBOTIC_ROVER_POSITION_TWO, VALID_ROBOTIC_ROVER_COMMAND_TWO);
         roboticRoverList.add(roboticRoverTwo);
         MarsRover marsRover = new MarsRover(VALID_PLATEAU_GRID_INPUT, roboticRoverList);
         marsRover.executeReceivedCommandsForEachRoboticRover();
@@ -125,7 +130,7 @@ public class MarsRoverTest {
 
     @Test
     public void should_return_five_one_E_for_rover_two_given_rover_two_position_is_three_three_E_and_the_given_command_is_MMRMMRMRRM() throws ValidationException {
-        roboticRoverTwo = new RoboticRover("3 3 E", "MMRMMRMRRM");
+        roboticRoverTwo = new RoboticRover(VALID_ROBOTIC_ROVER_POSITION_TWO, VALID_ROBOTIC_ROVER_COMMAND_TWO);
         roboticRoverList.add(roboticRoverTwo);
         MarsRover marsRover = new MarsRover(VALID_PLATEAU_GRID_INPUT, roboticRoverList);
         marsRover.executeReceivedCommandsForEachRoboticRover();
